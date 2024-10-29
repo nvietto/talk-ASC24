@@ -1,0 +1,362 @@
+---
+title: "Example Workflow"
+format: html
+editor: source
+toc: true
+toc-location: left
+toc-title: "Table of Contents"
+theme: journal
+self-contained: true
+---
+
+## Feed-Forward Neural Net using {tidymodels}
+
+### Load Packages and Set Preferences 
+
+```{r}
+
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load(tidyverse, tidymodels, skimr, vip, beepr, NeuralNetTools)
+
+tidymodels_prefer()
+theme_set(theme_bw())
+options(
+  pillar.advice = FALSE, 
+  pillar.min_title_chars = Inf,
+  pillar.max_columns = Inf
+)
+
+```
+
+### Simulate Data Frame 
+
+```{r}
+
+set.seed(123)
+
+all <- tibble(
+  Sex = factor(sample(c("Boy", "Girl"),
+                      size = 2226, 
+                      replace = TRUE,
+                      prob = c(0.52, 0.48))),
+  Eth = factor(sample(c("Black", "Hispanic", "White", "Multi", "Other"),
+                      size = 2226, 
+                      replace = TRUE,
+                      prob = c(0.33, 0.17, 0.12, 0.04, 0.34))),
+  polymorph1 = factor(sample(c("LL", "LS", "SS"),
+                             size = 2226, # size of actual data
+                             replace = TRUE, # this samples with replaceement 
+                             prob = c(0.42, 0.42, 0.16))), # mean for LL, LS, SS in real data
+  polymorph2 = factor(sample(c("12/12", "12/10", "10/10"),
+                             size = 2226, 
+                             replace = TRUE,
+                             prob = c(0.50, 0.41, 0.08))),
+  polymorph3 = factor(sample(c("CC", "CT", "TT"),
+                             size = 2226, 
+                             replace = TRUE,
+                             prob = c(0.65, 0.30, 0.04))),
+  polymorph4 = factor(sample(c("GG", "GT", "TT"),
+                             size = 2226, 
+                             replace = TRUE,
+                             prob = c(0.46, 0.41, 0.12))),
+  dependentvar = factor(sample(c(0, 1),
+                               size = 2226, 
+                               replace = TRUE,
+                               prob = c(0.54, 0.46))),
+  IV1 = rnorm(2226, 5.81, 1.47), # n, mean, sd
+  IV2 = rnorm(2226, 17.1, 4.99), 
+  IV3 = rnorm(2226, 7.71, 1.38), 
+  IV4 = rnorm(2226, 20.8, 1.75), 
+  IV5 = rnorm(2226, 13.7, 2.37), 
+  IV6 = rnorm(2226, 19, 3.95),
+  IV7 = rnorm(2226, 15.1, 4.13)
+)
+
+# We have to relevel our dependent variable so what we are trying to predict is the first level 
+
+levels(all$dependentvar) 
+
+all$dependentvar <- relevel(all$dependentvar, ref = "1")
+
+levels(all$dependentvar)
+
+
+```
+
+
+### Split 
+
+```{r}
+
+set.seed(123)
+
+# Splits into 3 random data sets (training, validation, testing)
+
+data_split_full <- initial_validation_split(all)
+
+train_data_full <- training(data_split_full)
+
+validation_data_full <- validation(data_split_full)
+
+test_data_full <- testing(data_split_full) 
+
+# Cross val object
+
+cross_val_full <- vfold_cv(train_data_full, v = 10)
+
+
+```
+
+
+### Preprocessing Via Recipee
+
+```{r}
+
+Recipe <- recipe(dependentvar ~., 
+                       data = train_data_full) |>
+  step_dummy(all_nominal_predictors()) |>
+  step_normalize(all_numeric_predictors())
+
+
+```
+
+
+### Model
+
+```{r}
+
+# Setting the parameters to "tune" here but we will use a grid search to set these 
+
+nnet <- mlp(
+  hidden_units = tune(),
+  epochs = tune(),
+  penalty = tune()) |> 
+    set_engine("nnet", importance = "impurity") |>
+    set_mode("classification")
+    
+
+
+mlp_param <- extract_parameter_set_dials(nnet)
+
+# this is how you find the ranges for your values in the grid 
+mlp_param |> 
+  extract_parameter_dials("hidden_units") 
+
+mlp_param |> 
+  extract_parameter_dials("epochs") 
+
+mlp_param |> 
+  extract_parameter_dials("penalty")
+
+
+```
+
+
+### Grid
+
+```{r}
+
+mlp_param <- mlp_param |> 
+  update(
+    hidden_units = hidden_units(range = c(1, 10)),
+    epochs = epochs(range = c(10, 1000)),
+    penalty = penalty(range = c(-10, 0), 
+                      trans = scales::log10_trans())
+  )
+
+
+
+nn_grid <- grid_regular(mlp_param,
+                        levels = 5)
+# if your model is a bet complex you may want to increase the level, although it comes at a cost for computation time
+
+```
+
+### Metrics/Yardstick
+
+```{r}
+
+metrics <- metric_set(
+  roc_auc,
+  accuracy,
+  brier_class
+)
+
+
+
+```
+
+
+### Workflow
+
+```{r}
+
+nn_wf <- workflow() |> 
+  add_recipe(Recipe) |>
+  add_model(nnet)
+
+
+
+```
+
+
+### Tune
+This is where we start plugging things in and seeing what works best. 
+
+```{r}
+set.seed(123)
+
+nn_tune <- tune_grid(
+  nn_wf,
+  resamples = cross_val_full,
+  grid = nn_grid,
+  metrics = metrics,
+  control = control_grid(save_pred = TRUE)
+)
+
+beep(sound = 8)
+
+```
+
+Setting a beep here can be helpful becasue these models can take awhile 
+
+
+### Examine Tune
+
+```{r}
+
+autoplot(nn_tune) 
+
+nn_tune |> 
+  collect_metrics() |> 
+  filter(.metric == "roc_auc") |> 
+  arrange(desc(mean)) 
+
+nn_tune |> 
+  collect_metrics() |> 
+  filter(.metric == "accuracy") |> 
+  arrange(desc(mean)) 
+
+nn_tune |>
+  collect_metrics() |>
+  filter(.metric == "brier_class") |>
+  arrange(mean)
+
+
+# extract the best fit 
+
+best_model <- select_best(nn_tune, metric = "roc_auc")
+
+
+
+```
+
+
+### Fit
+
+Good rules to live by here:  
+
+Fit = training data   
+Predict = validation or testing data  
+
+```{r}
+
+
+nn_wf_final<- finalize_workflow(nn_wf, best_model) |> 
+  fit(data = train_data_full)
+
+
+```
+
+Check your network structure 
+
+### Plot 
+
+```{r}
+
+
+# Extract the fitted model from the workflow
+
+fitted_model <- extract_fit_parsnip(nn_wf_final)
+
+plotnet(fitted_model$fit,
+        alpha = 0.7,         
+        cex_val = 1,      
+        node_labs = TRUE,   
+        bias = FALSE,        
+        cex_circle = 2,      
+        max_sp = TRUE,       
+        pos_col = "#1f78b4",
+        neg_col = "#e31a1c"  
+)
+
+
+
+```
+
+
+### Validation
+
+```{r}
+# Validation
+prop_pred <- nn_wf_final |> 
+  predict(validation_data_full,
+          type = "prob")
+
+
+class_pred <- nn_wf_final |> 
+  predict(validation_data_full,
+          type = "class")
+
+predictions_val <- bind_cols(
+  prop_pred,
+  class_pred,
+  validation_data_full
+)
+
+results <- metrics(predictions_val, 
+                   truth = dependentvar,
+                   estimate = .pred_class,
+                   .pred_1)
+
+results
+
+```
+
+
+
+### Test
+
+```{r}
+# Test 
+
+prop_pred_T <- nn_wf_final |> 
+  predict(test_data_full,
+          type = "prob")
+
+
+class_pred_T <- nn_wf_final |> 
+  predict(test_data_full,
+          type = "class")
+
+predictions_T <- bind_cols(
+  prop_pred_T,
+  class_pred_T,
+  test_data_full
+)
+
+results_T <- metrics(predictions_T, 
+                   truth = dependentvar,
+                   estimate = .pred_class,
+                   .pred_1)
+
+results_T
+
+# Extract the fitted model from the workflow
+
+nn_wf_final |> 
+  extract_fit_parsnip() |> 
+  vip()
+  
+```
+

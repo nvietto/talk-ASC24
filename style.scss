@@ -1,0 +1,271 @@
+/*-- scss:defaults --*/
+
+// fonts
+@import url('https://fonts.googleapis.com/css?family= Rubik|Newsreader|Playfair+Display|Libre+Baskerville|Fredericka+the+Great|Poppins');
+
+// font family
+
+$presentation-heading-font: 'Rubik', Times New Roman, serif !default;
+$font-family-sans-serif: 'Newsreader', Arial, sans-serif !default;
+
+// font size
+$presentation-h1-font-size: 2.6em;
+$presentation-h2-font-size: 1.2em;
+$presentation-h3-font-size: 1.2em;
+$presentation-h4-font-size: 1.2em;
+$presentation-font-size-root: 35px;
+$presentation-line-height: 1.2em;
+$presentation-heading-color: #000000 !default;
+
+// font color
+$theme-orange: #FF7F50;
+$theme-green: #88E032;
+$theme-grey:#859ab2;
+$theme-blue1: #0b1e38;
+$theme-blue2: #4988BF;
+$theme-blue3: #82C9D9;
+$theme-aqua: #12a79d;
+$theme-white: #FFFFFF;
+$theme-black: #373038;
+$theme-purple: #800080;
+$theme-tidymodels: #cc1f54;
+$theme-R:#75AADB;
+$theme-ffcws: #2E515B;
+
+
+// bg color
+$body-color: #000000;
+$link-color: #82C9D9;
+$body-bg: #ffffff;
+
+
+// cb color
+
+$code-block-bg: #e9f0f1;
+$code-bg: #e9f0f1;
+
+// center title
+
+h2 {
+  text-align: center;
+}
+
+/*-- scss:rules --*/
+
+.center {
+  text-align: center !important
+}
+
+
+.titlebox {
+  padding: 0.2em 0.4em;
+  background-color: rgba(255, 255, 255, .15);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 3rem 0 rgba(0, 0, 0, .2);
+  border-radius: 5px;
+}
+
+.playfair {
+  font-family: 'Playfair+Display';
+}
+
+
+.tidymodel {
+  color: $theme-tidymodels;
+}
+
+.R {
+  color: $theme-R;
+}
+
+.ffcws {
+  color: $theme-ffcws;
+}
+
+.libre {
+  font-family: 'Libre+Baskerville';
+}
+
+.small-text {
+  font-size: 0.80em;
+}
+
+.smaller-text {
+  font-size: 0.70em;
+}
+
+.purple {
+  color: $theme-purple;
+}
+
+.green {
+  color: $theme-green;
+}
+
+.blue3 {
+  color: $theme-blue3;
+}
+
+.blue2 {
+  color: $theme-blue2;
+}
+
+.height {
+    height: 700px; 
+}
+
+.fred {
+  font-family: 'Fredericka+the+Great';
+
+}
+
+.pop {
+  font-family: 'Poppins';
+}
+
+.large-text {
+  font-size: 2em;
+}
+
+.slide-deck {
+  width: 100%;
+  height: 400px;
+  border-radius: 5px;
+  margin-bottom: 10px !important;
+  box-shadow: 0 15px 30px rgba($theme-aqua, 0.5);
+}
+
+
+.reveal .slide-menu-button {
+    left: 5px;
+    top: 15px;
+    padding-left: 10px;
+    color: #859ab2;
+  }
+
+.reveal .progress {
+  background: rgba(0, 0, 0, 0.2);
+  color: #859ab2;
+  height: 1%;
+}
+
+
+
+/*fragment highlighting (learn more here: https://emilhvitfeldt.com/post/slidecraft-fragment-css/*/
+
+.reveal .slides section .fragment.rgb {
+  opacity: unset;
+  visibility: unset;
+}
+
+.reveal .slides section .fragment.rgb.visible {
+  color: grey;
+}
+
+.reveal .slides section .fragment.rgb.current-fragment {
+  color: $theme-blue3;
+}
+
+.reveal .slides section .fragment.rgb {
+  opacity: unset;
+  visibility: unset;
+
+  &.visible {
+    color: grey;
+  }
+
+  &.current-fragment {
+    color: $theme-blue3;
+  }
+}
+
+
+.reveal .slides section .fragment.rgb.visible {
+  color: grey;
+}
+
+.reveal .slides section .fragment.rgb.current-fragment {
+  color: $theme-blue3;
+}
+
+
+
+/* Bounce effect for Question Slide */
+
+
+.bounce-container {
+  display: flex;
+  justify-content: center; 
+  align-items: flex-start; 
+  min-height: 10vh; 
+  margin-bottom: 2px;  /* Lower this to add space to slide */
+}
+
+.bounce {
+  text-align: center;
+  width: 65%;
+  margin-top: 10px;
+  user-select: none;
+}
+
+.bounce b {
+  font: 500 10vh "Impact", sans-serif;
+  color: #fffeee;
+  text-shadow: 
+    0 -5px 8px $theme-grey,
+    0 4px 6px $theme-grey,
+    0 0 10px $theme-R,
+    0 0 20px $theme-R;
+}
+
+.bounce b span {
+  display: inline-block;
+  animation: bounce 6s infinite;
+  animation-delay: calc(var(--i) * 0.2s); 
+}
+
+.bounce b span:nth-of-type(1) {
+  --i: 0; 
+}
+.bounce b span:nth-of-type(2) {
+  --i: 1; 
+}
+.bounce b span:nth-of-type(3) {
+  --i: 2;
+}
+.bounce b span:nth-of-type(4) {
+  --i: 3;
+}
+.bounce b span:nth-of-type(5) {
+  --i: 4;
+}
+.bounce b span:nth-of-type(6) {
+  --i: 5;
+}
+.bounce b span:nth-of-type(7) {
+  --i: 6;
+}
+.bounce b span:nth-of-type(8) {
+  --i: 7;
+}
+.bounce b span:nth-of-type(9) {
+  --i: 8;
+}
+.bounce b span:nth-of-type(10) {
+  --i: 9;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-30px);
+  }
+  50% {
+    transform: translateY(15px);
+  }
+  75% {
+    transform: translateY(-15px);
+  }
+}

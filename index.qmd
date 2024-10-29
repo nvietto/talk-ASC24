@@ -1,0 +1,513 @@
+---
+format:
+  revealjs: 
+    theme: [default, style.scss]
+incremental: true 
+logo: Images/NebCrim.png
+slide-number: true
+self-contained: true
+transition: fade
+show-notes: false
+---
+
+# {.center}
+
+::: {.titlebox style="text-align:center; font-size: 1em;"}
+[**A Combined Theory Data-Driven Approach to Classifying Delinquency Risk in the Future of Families and Child Well-Being Study**]{.playfair}
+:::
+
+# About Me
+
+<br>
+
+**Name**: Nicholas Vietto  
+
+<br>
+
+**PhD Candidate** at the University of Nebraska - Omaha 
+
+<br>
+
+**Research Interests**: Biopsychosocial Criminology, Quantitative Methods, Data Visualization, Open-Science, Open-Source Software 
+
+<br>
+
+
+## Introduction
+
+<br>
+
+**Goal:** 
+
+Classify delinquency risk at age 15 using data from ages 9 and 15 in the [[Future of Families and Child Wellbeing Study (FFCWS)]{.libre .ffcws}](https://ffcws.princeton.edu/).
+
+<br>
+
+**How:**
+
+Building on the findings and method of Chan et al. (2023), we implement a feed-forward neural network using the [[{tidymodels}]{.tidymodel}](https://www.tidymodels.org/) framework in [R]{.R}.
+
+
+## Chan and Colleagues (2023)
+
+
+:::: {.columns}
+
+::: {.column width="40%"}
+
+:::{.small-text}
+
+<br>
+
+<br>
+
+<br>
+
+
+Using a model with factors that included [social]{.purple}, [psychological]{.green}, and [biological]{.blue3} domains, outperformed models using any single domain in predicting a CD diagnosis with 91.18% accuracy.
+
+:::
+
+:::
+
+::: {.column width="60%"}
+
+
+![](images/chan.png)
+
+
+:::
+
+::::
+
+
+## Extending Chan and Colleagues (2023)
+
+<br>
+
+
+
+Using [[Future of Families and Child Wellbeing Study (FFCWS)]{.libre .ffcws}](https://ffcws.princeton.edu/):
+
+<br>
+
+::: {.nonincremental}
+
+* [Expanded Sociological Domain]{.fragment .rgb}: Incorporates rich socio-environmental predictors, including census tract variables, labor market and proximity to gun-violence incidents.
+
+* [Incorporating Genetic Data]{.fragment .rgb}: Specifically, incorporate genes involved in the serotonergic and dopaminergic pathways to examine the role of polymorphic variation.
+
+* [Classifying Delinquency Risk]{.fragment .rgb} rather than a CD diagnosis.
+
+:::
+
+
+
+## [[Future of Families and Child Wellbeing Study (FFCWS)]{.libre .ffcws}](https://ffcws.princeton.edu/)
+
+![](images/ffcws.png){fig-align="center"}
+
+::: notes
+
+The Future of Families and Child Wellbeing Study (FFCWS) is based on a stratified, multistage sample of about 5,000 children born in large U.S. cities (population over 200,000) between 1998 and 2000, where births to unmarried mothers were oversampled by a ratio of 3 to 1. This sampling strategy resulted in the inclusion of a large number of Black, Hispanic, and low-income families.
+
+:::
+
+## [The Great Theory Bake Off]{.pop style="text-align: center; font-size: 1.5em; font-weight: bold; color: #2E3440;"}
+
+<br>
+
+:::: {.columns}
+
+::: {.column width="33%"}
+
+[**Socio-Environmental Domain**]{style="font-size: 1.0 em; color: #5E81AC; font-weight: bold; text-align: center;"}
+
+::: {.nonincremental}
+::: {.smaller-text}
+* Parental Monitoring Scale (Focal Child, Year 15)  
+
+* Neighborhood Collective Efficacy Scale (Focal Child, Year 15)
+
+* Conflict Tactics Scale (Focal Child, Year 15)  
+
+* Material Hardship Scale (PCG, Year 15)
+
+:::
+:::
+
+:::
+
+::: {.column width="33%"}
+
+[**Psychological Domain**]{style="font-size: 1.0 em; color: #5E81AC; font-weight: bold; text-align: center;"}
+
+
+::: {.nonincremental}
+::: {.smaller-text}
+
+* BSI 18 Anxiety Scale (Focal Child, Year 15)   
+ 
+* Center for Epidemiologic Studies Depression Scale (CES-D) (Focal Child, Year 15)   
+
+* Dickman’s Impulsivity Scale (Focal Child, Year 15)   
+
+:::
+
+:::
+
+:::
+
+::: {.column width="33%"}
+
+[**Genetic Domain**]{style="font-size: 1.0 em; color: #5E81AC; font-weight: bold; text-align: center;"}
+
+::: {.nonincremental}
+::: {.smaller-text}
+
+* SLC6A4 Gene (Serotonin Transporter Gene)   
+  - 5HTTLPR   
+  - STin2   
+* TPH2 Gene (Tryptophan Hydroxylase 2 Gene)   
+  - rs4570625   
+  - rs1386494  
+
+:::
+:::
+:::
+
+:::
+
+
+
+## Why Machine Learning?
+### Improvements in Empirical Analysis
+
+<br>
+
+::: {.small-text}
+
+* **Advanced Data Processing**: Efficiently handles and analyzes large amounts of data to enhance predictive power.  
+
+
+* **Uncovering Complex Relationships**: Identifies non-linear and higher-order interactions, especially in high-dimensional datasets, providing deeper insights into variable relationships (e.g., high dimensional data like image, audio, etc.).
+
+
+
+* **Enhanced Predictive Accuracy**: Continuously refines predictions through iterative learning, improving overall accuracy over time.
+
+* Further Reading: [Mapping of machine learning approaches for description, prediction, and causal inference in the social and health sciences](https://www.science.org/doi/10.1126/sciadv.abk1942)
+
+:::
+
+## Why Machine Learning?
+### Feed Forward Neural Networks
+
+
+![](images/ffnn.png){fig-align="center"}
+
+::: footer
+LearnOpenCV
+:::
+
+::: notes
+
+**FFNN**
+
+ Each neuron computes a weighted sum of the previous layer's neurons using an activation function, and weights are adjusted through backpropagation to minimize output error.
+
+::: 
+
+
+
+## Machine Learning Workflow using the [[{tidymodels}]{.tidymodel}](https://www.tidymodels.org/) framework in [R]{.R}
+
+
+<br>
+
+![](images/tmfram.png){fig-align="center"}
+
+## Machine Learning Workflow using the [[{tidymodels}]{.tidymodel}](https://www.tidymodels.org/) framework in [R]{.R}
+
+![](images/workflow.png){fig-align="center"}
+
+## Machine Learning Workflow
+### Data Spending
+
+<br>
+
+
+
+:::: {.columns}
+::: {.column width="50%"}
+![](images/tidymodels.png){width="90%"}
+:::
+
+::: {.column width="50%"}
+::: {.nonincremental}
+[**60/20/20**]{.blue3} split for training, validation, and testing.   
+
+[**2128**]{.blue3} observations after merging data
+
+* 1276 for training   
+* 426  for validation   
+* 426  for testing   
+
+:::
+
+:::
+
+::::
+
+
+
+## Sample Descriptive Statistics
+
+
+
+![](images/des.png){fig-align="center"}
+
+
+
+
+
+## Predictor Descriptive Statistics
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+![](images/gene.png)
+
+
+
+:::
+
+
+::: {.column width="50%"}
+
+![](images/socio.png)
+
+
+
+![](images/psych.png)
+
+:::
+
+:::
+
+
+## Preliminary Results 
+
+![](images/res/socroc.png){.absolute top=45 right=750 height="50%"}
+![](images/res/vipsocio){.absolute top=400 right=815 height="39%"}
+
+
+![](images/res/psychroc.png){.absolute top=45 right=300 height="50%"}
+
+
+![](images/res/vippsych.png){.absolute top=400 right=370 height="40%"}
+
+
+![](images/res/generoc.png){.absolute top=45 right=-140 height="50%"}
+
+
+![](images/res/genevip.png){.absolute top=400 right=-62 height="41%"}
+
+
+
+
+
+## Preliminary Results
+
+
+
+
+![](images/res/allroc.png){.absolute top=100 right=500 height="60%"}
+
+![](images/res/allvip.png){.absolute top=125 right=-50 height="56%"}
+
+
+## Preliminary Results
+
+
+
+![](images/res/network.png){fig-align="center"}
+
+
+::: notes
+
+12-3-1 network with 43 weights
+
+:::
+
+## Preliminary Results
+
+
+![](images/res/auc.png){.absolute top=140 right=750 height="47%"}
+
+
+
+
+![](images/res/Acc.png){.absolute top=140 right=300 height="47%"}
+
+
+![](images/res/bre.png){.absolute top=140 right=-175 height="47%"}
+
+
+
+
+## Limitations 
+
+
+<br>
+
+::: {.nonincremental}
+
+* [**Genetic Data Constraints:**]{.fragment .rgb} Genetic information is confined to markers from the candidate gene era, potentially limiting genomic coverage.    
+
+* [**Sample Size:**]{.fragment .rgb} The relatively small sample size may impact the robustness and generalizability typical for machine learning applications.  
+
+* [**Age of Assessment:**]{.fragment .rgb} Age 15 may be early for assessing delinquency risk, as behaviors predictive of long-term patterns may not yet be fully evident.   
+
+:::
+
+
+## Future Directions
+
+<br>
+
+::: {.nonincremental}
+
+* [**Enhance Domain Optimization:**]{.fragment .rgb} Add features to maximize the model's performance in each specific domain (e.g., adding labor markets for distal predictors in the sociological domain).    
+
+* [**Evaluate Fairness Across Ethnicities:**]{.fragment .rgb} Assess the final model’s performance across different ethnic groups to ensure fairness, verifying it does not exhibit biases against social or minority groups.    
+
+* [**Test mode on Year 22 data:**]{.fragment .rgb} Validate the model's performance on the Year 22 data to assess its generalizability and predictive power.
+
+:::
+
+
+# 
+
+::: {.bounce-container}
+::: {.bounce }
+<b>
+  <span>Q</span> <span>u</span> <span>e</span> <span>s</span> <span>t</span> <span>i</span> <span>o</span> <span>n</span> <span>s</span> <span>?</span> 
+</b>
+:::
+:::
+
+![](images/QR.png){fig-align="center"}
+
+
+
+
+::: notes
+
+I'll add a QR code here that will allow the audience to scan while I answer questtions to access the slides and contact info. 
+
+
+:::
+
+
+## Supplemental Materials
+### The Tale of Two Cultures
+
+:::: {.columns}
+
+::: {.column width="47%" .height}
+
+[**Data Modeling Culture**]{.fred .fragment .rgb}
+
+<br>
+
+![](images/dm.png)
+
+
+
+
+::: {.smaller-text}
+
+**Primary Focus:** Deriving [causal inference]{.blue3} 
+
+**Approach:** Emphasizes deductive reasoning
+
+**Process:** Models the data-generating process to clarify relationships between X and Y   
+
+**Culture:** Grounded in methodologies developed primarily by [statisticians]{.blue3} 
+
+:::
+
+:::
+
+::: {.column width="53%" .height}
+
+[**Algorithm Modeling Culture**]{.fred .fragment .rgb}
+
+<br>
+
+![](images/am.png)
+
+
+
+::: {.smaller-text}
+
+**Primary Goal:** Maximizing [predictive accuracy]{.blue3} 
+
+**Approach:** Emphasizes inductive reasoning, with a focus on learning patterns directly from data   
+
+**Process:**  Utilizes black-box models to capture relationships between X and Y   
+
+**Culture:**  Rooted in methodologies developed primarily by [computer scientists]{.blue3} 
+ 
+:::
+:::
+
+::::
+
+
+
+::: footer
+[Breiman (2001)](https://www2.math.uu.se/~thulin/mm/breiman.pdf) 
+:::
+
+## Supplemental Materials
+### Neural Networks 
+
+![](images/nn.png){fig-align="center"}
+
+::: notes
+
+**Natural**
+
+- When we learn new things, our brain forms new connections between neurons, in other words the more the learn or use that particular neuron, the strong the connection becomes between neurons.
+
+**Artificial**
+
+- Just like a natural neural network, an artificial neural network the connections betweeen the nodes (weights) become stronger or weaker based on the training (or learning). 
+
+
+:::
+
+## Supplemental Materials
+### Confusion Matrix (All Domains)
+
+
+![](images/res/confus.png){fig-align="center"}
+
+## Supplemental Materials
+### Class Balance Check 
+
+<br>
+
+
+<br>
+
+![](images/classs.png){fig-align="center"}
+
+## Supplemental Materials
+### Activation Functions 
+
+
+![](images/act.png){.absolute right=250 height="75%"}
