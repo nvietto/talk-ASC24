@@ -485,7 +485,7 @@ I'll add a QR code here that will allow the audience to scan while I answer ques
 
 **Artificial**
 
-- Just like a natural neural network, an artificial neural network the connections betweeen the nodes (weights) become stronger or weaker based on the training (or learning). 
+- Just like a natural neural network, an artificial neural network the connections between the nodes (weights) become stronger or weaker based on the training (or learning). 
 
 
 :::
