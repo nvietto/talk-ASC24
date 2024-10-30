@@ -300,7 +300,7 @@ LearnOpenCV
 ## Preliminary Results 
 
 ![](images/res/socroc.png){.absolute top=45 right=750 height="50%"}
-![](images/res/vipsocio){.absolute top=400 right=815 height="39%"}
+![](images/res/vipsocio){.absolute top=400 right=825 height="44%"}
 
 
 ![](images/res/psychroc.png){.absolute top=45 right=300 height="50%"}
