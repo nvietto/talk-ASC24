@@ -113,71 +113,6 @@ The Future of Families and Child Wellbeing Study (FFCWS) is based on a stratifie
 
 :::
 
-## [The Great Theory Bake Off]{.pop style="text-align: center; font-size: 1.5em; font-weight: bold; color: #2E3440;"}
-
-<br>
-
-:::: {.columns}
-
-::: {.column width="33%"}
-
-[**Socio-Environmental Domain**]{style="font-size: 1.0 em; color: #5E81AC; font-weight: bold; text-align: center;"}
-
-::: {.nonincremental}
-::: {.smaller-text}
-* Parental Monitoring Scale (Focal Child, Year 15)  
-
-* Neighborhood Collective Efficacy Scale (Focal Child, Year 15)
-
-* Conflict Tactics Scale (Focal Child, Year 15)  
-
-* Material Hardship Scale (PCG, Year 15)
-
-:::
-:::
-
-:::
-
-::: {.column width="33%"}
-
-[**Psychological Domain**]{style="font-size: 1.0 em; color: #5E81AC; font-weight: bold; text-align: center;"}
-
-
-::: {.nonincremental}
-::: {.smaller-text}
-
-* BSI 18 Anxiety Scale (Focal Child, Year 15)   
- 
-* Center for Epidemiologic Studies Depression Scale (CES-D) (Focal Child, Year 15)   
-
-* Dickman’s Impulsivity Scale (Focal Child, Year 15)   
-
-:::
-
-:::
-
-:::
-
-::: {.column width="33%"}
-
-[**Genetic Domain**]{style="font-size: 1.0 em; color: #5E81AC; font-weight: bold; text-align: center;"}
-
-::: {.nonincremental}
-::: {.smaller-text}
-
-* SLC6A4 Gene (Serotonin Transporter Gene)   
-  - 5HTTLPR   
-  - STin2   
-* TPH2 Gene (Tryptophan Hydroxylase 2 Gene)   
-  - rs4570625   
-  - rs1386494  
-
-:::
-:::
-:::
-
-:::
-
 
 
 ## Why Machine Learning?
@@ -206,9 +141,6 @@ The Future of Families and Child Wellbeing Study (FFCWS) is based on a stratifie
 
 ![](images/ffnn.png){fig-align="center"}
 
-::: footer
-LearnOpenCV
-:::
 
 ::: notes
 
@@ -268,6 +200,70 @@ LearnOpenCV
 ![](images/des.png){fig-align="center"}
 
 
+## [Biopsychosocial Risk]{.pop style="text-align: center; font-size: 1.5em; font-weight: bold"}
+
+<br>
+
+:::: {.columns}
+
+::: {.column width="33%"}
+
+[**Socio-Environmental Domain**]{style="font-size: 1.0 em; color: #5E81AC; font-weight: bold"}
+
+::: {.nonincremental}
+::: {.smaller-text}
+* Parental Monitoring Scale (Focal Child, Year 15)  
+
+* Neighborhood Collective Efficacy Scale (Focal Child, Year 15)
+
+* Conflict Tactics Scale (Focal Child, Year 15)  
+
+* Material Hardship Scale (PCG, Year 15)
+
+:::
+:::
+
+:::
+
+::: {.column width="33%"}
+
+[**Psychological Domain**]{style="font-size: 1.0 em; color: #5E81AC; font-weight: bold"}
+
+
+::: {.nonincremental}
+::: {.smaller-text}
+
+* BSI 18 Anxiety Scale (Focal Child, Year 15)   
+ 
+* Center for Epidemiologic Studies Depression Scale (CES-D) (Focal Child, Year 15)   
+
+* Dickman’s Impulsivity Scale (Focal Child, Year 15)   
+
+:::
+
+:::
+
+:::
+
+::: {.column width="33%"}
+
+[**Genetic Domain**]{style="font-size: 1.0 em; color: #5E81AC; font-weight: bold"}
+
+::: {.nonincremental}
+::: {.smaller-text}
+
+* SLC6A4 Gene (Serotonin Transporter Gene)   
+  - 5HTTLPR   
+  - STin2   
+* TPH2 Gene (Tryptophan Hydroxylase 2 Gene)   
+  - rs4570625   
+  - rs1386494  
+
+:::
+:::
+:::
+
+:::
 
 
 
@@ -296,7 +292,12 @@ LearnOpenCV
 
 :::
 
-## 
+## Outcome Descriptive Statistics
+
+<br>
+
+![](images/classs.png){.absolute top=130 right=100 height="50%"}
+
 
 ## Preliminary Results 
 
@@ -497,15 +498,7 @@ I'll add a QR code here that will allow the audience to scan while I answer ques
 
 ![](images/res/confus.png){fig-align="center"}
 
-## Supplemental Materials
-### Class Balance Check 
 
-<br>
-
-
-<br>
-
-![](images/classs.png){fig-align="center"}
 
 ## Supplemental Materials
 ### Activation Functions 
