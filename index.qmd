@@ -296,7 +296,7 @@ The Future of Families and Child Wellbeing Study (FFCWS) is based on a stratifie
 
 <br>
 
-![](images/classs.png){.absolute top=130 right=100 height="50%"}
+![](images/classs.png){.absolute top=150 right=100 height="50%"}
 
 
 ## Preliminary Results 
