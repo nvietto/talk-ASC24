@@ -296,6 +296,7 @@ LearnOpenCV
 
 :::
 
+## 
 
 ## Preliminary Results 
 
@@ -383,7 +384,7 @@ LearnOpenCV
 
 * [**Evaluate Fairness Across Ethnicities:**]{.fragment .rgb} Assess the final model’s performance across different ethnic groups to ensure fairness, verifying it does not exhibit biases against social or minority groups.    
 
-* [**Test mode on Year 22 data:**]{.fragment .rgb} Validate the model's performance on the Year 22 data to assess its generalizability and predictive power.
+* [**Test model on Year 22 data:**]{.fragment .rgb} Validate the model's performance on the Year 22 data to assess its generalizability and predictive power.
 
 :::
 
