@@ -86,6 +86,8 @@ levels(all$dependentvar)
 
 ### Split 
 
+Setting a seed here (set.seed(anynumber)) is important for reproducibility. 
+
 ```{r}
 
 set.seed(123)
@@ -108,7 +110,9 @@ cross_val_full <- vfold_cv(train_data_full, v = 10)
 ```
 
 
-### Preprocessing Via Recipee
+### Preprocessing Via Recipe
+
+[More recipe steps here](https://www.tidymodels.org/find/recipes/)
 
 ```{r}
 
@@ -122,6 +126,8 @@ Recipe <- recipe(dependentvar ~.,
 
 
 ### Model
+
+[More model types and engines here](https://www.tidymodels.org/find/parsnip/)
 
 ```{r}
 
@@ -139,6 +145,7 @@ nnet <- mlp(
 mlp_param <- extract_parameter_set_dials(nnet)
 
 # this is how you find the ranges for your values in the grid 
+
 mlp_param |> 
   extract_parameter_dials("hidden_units") 
 
@@ -168,11 +175,14 @@ mlp_param <- mlp_param |>
 
 nn_grid <- grid_regular(mlp_param,
                         levels = 5)
+
 # if your model is a bet complex you may want to increase the level, although it comes at a cost for computation time
 
 ```
 
 ### Metrics/Yardstick
+
+[Yardstick](https://yardstick.tidymodels.org/)
 
 ```{r}
 
@@ -189,6 +199,8 @@ metrics <- metric_set(
 
 ### Workflow
 
+[Learn more about workflows here](https://workflows.tidymodels.org/)
+
 ```{r}
 
 nn_wf <- workflow() |> 
@@ -201,7 +213,8 @@ nn_wf <- workflow() |>
 
 
 ### Tune
-This is where we start plugging things in and seeing what works best. 
+
+[Tune](https://tune.tidymodels.org/)
 
 ```{r}
 set.seed(123)
@@ -218,7 +231,7 @@ beep(sound = 8)
 
 ```
 
-Setting a beep here can be helpful becasue these models can take awhile 
+Setting a beep here can be helpful because these models can take awhile.  
 
 
 ### Examine Tune
@@ -248,7 +261,6 @@ nn_tune |>
 best_model <- select_best(nn_tune, metric = "roc_auc")
 
 
-
 ```
 
 
@@ -256,8 +268,9 @@ best_model <- select_best(nn_tune, metric = "roc_auc")
 
 Good rules to live by here:  
 
-Fit = training data   
-Predict = validation or testing data  
+**Fit = training data**
+
+**Predict = validation or testing data**
 
 ```{r}
 
@@ -298,7 +311,7 @@ plotnet(fitted_model$fit,
 ### Validation
 
 ```{r}
-# Validation
+
 prop_pred <- nn_wf_final |> 
   predict(validation_data_full,
           type = "prob")
@@ -328,7 +341,7 @@ results
 ### Test
 
 ```{r}
-# Test 
+
 
 prop_pred_T <- nn_wf_final |> 
   predict(test_data_full,
