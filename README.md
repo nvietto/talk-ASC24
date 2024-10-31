@@ -19,4 +19,12 @@ Click the green "Code" button and select "Download ZIP" to download all files.
 - **index.html / index.qmd**: Presentation slides (use the HTML version).
 - **Example_Workflow.html / Example_Workflow.qmd**: A simple example of a neural network workflow. This includes simulated data, and libraries are set to auto-install if missing. Simply open and select "Render" to get started.
 
+
+## Further Reading
+
+- **[The Future of Families and Child Well-Being Study](https://ffcws.princeton.edu/)**   
+- **[Tidy Modeling with R](https://www.tmwr.org/)**   
+- **[Mapping of machine learning approaches for description, prediction, and causal inference in the social and health sciences](https://www.science.org/doi/10.1126/sciadv.abk1942)**   
+- **[Classifying Conduct Disorder using a biopsychosocial model and machine learning method](https://pmc.ncbi.nlm.nih.gov/articles/PMC9393206/)**  
+
 --- 
