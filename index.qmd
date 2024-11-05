@@ -33,19 +33,56 @@ show-notes: false
 <br>
 
 
-## Introduction
+
+## Prior Work on Risk for Delinquecny 
+
+::: {.small-text}
 
 <br>
 
-**Goal:** 
-
-Classify delinquency risk at age 15 using data from ages 9 and 15 in the [[Future of Families and Child Wellbeing Study (FFCWS)]{.libre .ffcws}](https://ffcws.princeton.edu/).
+Prior studies of risk for delinquency show that risk factors across [multiple domains]{.blue3} are associated with increased risk for delinquency. 
 
 <br>
 
-**How:**
+Studies in this area commonly show [individual and socio-environmental differences]{.blue3} are associated with risk for delinquency
 
-Building on the findings and method of Chan et al. (2023), we implement a feed-forward neural network using the [[{tidymodels}]{.tidymodel}](https://www.tidymodels.org/) framework in [R]{.R}.
+· **Individual** - cognitive (e.g., IQ) and trait measures
+
+· **Socio-environmental** – parents, peers, and communities
+
+<br>
+
+A smaller body of research has shown that [genetic variation]{.blue3} is also associated with risk for delinquency
+
+· **Genetic variation** associated with dopaminergic and serotonergic function
+
+· Often in **interaction with environmental risk factors** (e.g., childhood adversity) 
+
+:::
+
+## Why Machine Learning?
+
+<br>
+
+::: {.small-text}
+
+Computational methods used in prior work on risk for has methodological limitations including an over reliance on mass-univariate testing (Dwyer et al., 2018).
+
+<br>
+
+Analyses with Machine Learning can improve our understanding of risk for delinquency:
+
+
+**Advanced Data Processing**: Efficiently handles and analyzes large amounts of data to enhance predictive power.  
+
+
+**Uncovering Complex Relationships**: Identifies non-linear and higher-order interactions, especially in high-dimensional datasets, providing deeper insights into variable relationships (e.g., high dimensional data like image, audio, etc.).
+
+
+**Enhanced Predictive Accuracy**: Continuously refines predictions through iterative learning, improving overall accuracy over time.
+
+
+:::
 
 
 ## Chan and Colleagues (2023)
@@ -53,7 +90,7 @@ Building on the findings and method of Chan et al. (2023), we implement a feed-f
 
 :::: {.columns}
 
-::: {.column width="40%"}
+::: {.column width="50%"}
 
 :::{.small-text}
 
@@ -61,16 +98,19 @@ Building on the findings and method of Chan et al. (2023), we implement a feed-f
 
 <br>
 
+Using data from the ABCD Study, Chan et al. (2023) applied a Feed-Forward Neural Network to classify conduct disorder (CD) in children, utilizing a multidomain approach.  
+
 <br>
 
+Their findings revealed that a model incorporating [social]{.purple}, [psychological]{.green}, and [biological]{.blue3} factors outperformed single-domain models in predicting CD, achieving **91.18% accuracy** and an **AUC of 0.957**.   
 
-Using a model with factors that included [social]{.purple}, [psychological]{.green}, and [biological]{.blue3} domains, outperformed models using any single domain in predicting a CD diagnosis with 91.18% accuracy.
+
 
 :::
 
 :::
 
-::: {.column width="60%"}
+::: {.column width="50%"}
 
 
 ![](images/chan.png)
@@ -81,15 +121,13 @@ Using a model with factors that included [social]{.purple}, [psychological]{.gre
 ::::
 
 
-## Extending Chan and Colleagues (2023)
+## The Current Study 
 
 <br>
 
-
+Generalized the approach of Chan et al. (2023) to risk for delinquency.
 
 Using [[Future of Families and Child Wellbeing Study (FFCWS)]{.libre .ffcws}](https://ffcws.princeton.edu/):
-
-<br>
 
 ::: {.nonincremental}
 
@@ -102,103 +140,9 @@ Using [[Future of Families and Child Wellbeing Study (FFCWS)]{.libre .ffcws}](ht
 :::
 
 
-
 ## [[Future of Families and Child Wellbeing Study (FFCWS)]{.libre .ffcws}](https://ffcws.princeton.edu/)
 
 ![](images/ffcws.png){fig-align="center"}
-
-::: notes
-
-The Future of Families and Child Wellbeing Study (FFCWS) is based on a stratified, multistage sample of about 5,000 children born in large U.S. cities (population over 200,000) between 1998 and 2000, where births to unmarried mothers were oversampled by a ratio of 3 to 1. This sampling strategy resulted in the inclusion of a large number of Black, Hispanic, and low-income families.
-
-:::
-
-
-
-## Why Machine Learning?
-### Improvements in Empirical Analysis
-
-<br>
-
-::: {.small-text}
-
-* **Advanced Data Processing**: Efficiently handles and analyzes large amounts of data to enhance predictive power.  
-
-
-* **Uncovering Complex Relationships**: Identifies non-linear and higher-order interactions, especially in high-dimensional datasets, providing deeper insights into variable relationships (e.g., high dimensional data like image, audio, etc.).
-
-
-
-* **Enhanced Predictive Accuracy**: Continuously refines predictions through iterative learning, improving overall accuracy over time.
-
-* Further Reading: [Mapping of machine learning approaches for description, prediction, and causal inference in the social and health sciences](https://www.science.org/doi/10.1126/sciadv.abk1942)
-
-:::
-
-## Why Machine Learning?
-### Feed Forward Neural Networks
-
-
-![](images/ffnn.png){fig-align="center"}
-
-
-::: notes
-
-**FFNN**
-
- Each neuron computes a weighted sum of the previous layer's neurons using an activation function, and weights are adjusted through backpropagation to minimize output error.
-
-::: 
-
-
-
-## Machine Learning Workflow using the [[{tidymodels}]{.tidymodel}](https://www.tidymodels.org/) framework in [R]{.R}
-
-
-<br>
-
-![](images/tmfram.png){fig-align="center"}
-
-## Machine Learning Workflow using the [[{tidymodels}]{.tidymodel}](https://www.tidymodels.org/) framework in [R]{.R}
-
-![](images/workflow.png){fig-align="center"}
-
-## Machine Learning Workflow
-### Data Spending
-
-<br>
-
-
-
-:::: {.columns}
-::: {.column width="50%"}
-![](images/tidymodels.png){width="90%"}
-:::
-
-::: {.column width="50%"}
-::: {.nonincremental}
-[**60/20/20**]{.blue3} split for training, validation, and testing.   
-
-[**2128**]{.blue3} observations after merging data
-
-* 1276 for training   
-* 426  for validation   
-* 426  for testing   
-
-:::
-
-:::
-
-::::
-
-
-
-## Sample Descriptive Statistics
-
-
-
-![](images/des.png){fig-align="center"}
-
 
 ## [Biopsychosocial Risk]{.pop style="text-align: center; font-size: 1.5em; font-weight: bold"}
 
@@ -266,6 +210,41 @@ The Future of Families and Child Wellbeing Study (FFCWS) is based on a stratifie
 :::
 
 
+## Machine Learning Workflow
+### Data Spending
+
+<br>
+
+:::: {.columns}
+::: {.column width="50%"}
+![](images/tidymodels.png){width="90%"}
+:::
+
+::: {.column width="50%"}
+::: {.nonincremental}
+[**60/20/20**]{.blue3} split for training, validation, and testing.   
+
+[**2128**]{.blue3} observations after merging data
+
+* 1276 for training   
+* 426  for validation   
+* 426  for testing   
+
+:::
+
+:::
+
+::::
+
+
+
+## Sample Descriptive Statistics
+
+
+
+![](images/des.png){fig-align="center"}
+
+
 
 ## Predictor Descriptive Statistics
 
@@ -299,62 +278,47 @@ The Future of Families and Child Wellbeing Study (FFCWS) is based on a stratifie
 ![](images/classs.png){.absolute top=150 right=100 height="50%"}
 
 
+## Preliminary Results (Socio-Environmental)
+
+![](images/res/socroc.png){.absolute top=140 right=600 height="55%"}
+![](images/res/vipsocial.png){.absolute top=200 right=0 height="40%"}
+
+
+
+## Preliminary Results (Psychological)
+
+![](images/res/psychroc.png){.absolute top=140 right=600 height="55%"}
+
+
+![](images/res/vippsych.png){.absolute top=200 right=0 height="40%"}
+
+
+## Preliminary Results (Genetic)
+
+![](images/res/generoc.png){.absolute top=140 right=600 height="55%"}
+
+
+![](images/res/genevip.png){.absolute top=200 right=0 height="40%"}
+
+## Preliminary Results (Biopsychosocial)
+
+
+
+![](images/res/allrocplot.png){.absolute top=140 right=600 height="55%"}
+
+![](images/res/allvip.png){.absolute top=190 right=50 height="45%"}
+
+
+
 ## Preliminary Results 
 
-![](images/res/socroc.png){.absolute top=45 right=750 height="50%"}
-![](images/res/vipsocio){.absolute top=400 right=825 height="44%"}
+
+![](images/res/allroc.png){.absolute top=200 right=750 height="38%"}
+
+![](images/res/Acc.png){.absolute top=200 right=300 height="38%"}
 
 
-![](images/res/psychroc.png){.absolute top=45 right=300 height="50%"}
-
-
-![](images/res/vippsych.png){.absolute top=400 right=370 height="40%"}
-
-
-![](images/res/generoc.png){.absolute top=45 right=-140 height="50%"}
-
-
-![](images/res/genevip.png){.absolute top=400 right=-62 height="41%"}
-
-
-
-
-
-## Preliminary Results
-
-
-
-
-![](images/res/allroc.png){.absolute top=100 right=500 height="60%"}
-
-![](images/res/allvip.png){.absolute top=125 right=-50 height="56%"}
-
-
-## Preliminary Results
-
-
-
-![](images/res/network.png){fig-align="center"}
-
-
-::: notes
-
-12-3-1 network with 43 weights
-
-:::
-
-## Preliminary Results
-
-
-![](images/res/auc.png){.absolute top=140 right=750 height="47%"}
-
-
-
-
-![](images/res/Acc.png){.absolute top=140 right=300 height="47%"}
-
-
-![](images/res/bre.png){.absolute top=140 right=-175 height="47%"}
+![](images/res/bre.png){.absolute top=200 right=-140 height="38%"}
 
 
 
@@ -379,6 +343,7 @@ The Future of Families and Child Wellbeing Study (FFCWS) is based on a stratifie
 
 <br>
 
+::: {.small-text}
 ::: {.nonincremental}
 
 * [**Enhance Domain Optimization:**]{.fragment .rgb} Add features to maximize the model's performance in each specific domain (e.g., adding labor markets for distal predictors in the sociological domain).    
@@ -387,8 +352,12 @@ The Future of Families and Child Wellbeing Study (FFCWS) is based on a stratifie
 
 * [**Test model on Year 22 data:**]{.fragment .rgb} Validate the model's performance on the Year 22 data to assess its generalizability and predictive power.
 
-:::
+* [**Treat delinquency as a continuous outcome**]{.fragment .rgb} rather than a classification model.
 
+* [**Manually fix the GxE interactions**]{.fragment .rgb} using domain knowledge rather than allowing model to determine the interaction.
+
+:::
+:::
 
 # 
 
@@ -411,6 +380,19 @@ I'll add a QR code here that will allow the audience to scan while I answer ques
 
 
 :::
+
+
+## Supplemental Materials
+### Tests for Overfitting 
+
+
+![](images/res/aucover.png){.absolute top=200 right=750 height="37%"}
+
+![](images/res/accover.png){.absolute top=200 right=300 height="37%"}
+
+![](images/res/Overbr.png){.absolute top=200 right=-140 height="37%"}
+
+
 
 
 ## Supplemental Materials
@@ -470,9 +452,20 @@ I'll add a QR code here that will allow the audience to scan while I answer ques
 
 
 
-::: footer
-[Breiman (2001)](https://www2.math.uu.se/~thulin/mm/breiman.pdf) 
-:::
+## Supplemental Materials
+### Machine Learning Workflow using the [[{tidymodels}]{.tidymodel}](https://www.tidymodels.org/) framework in [R]{.R}
+
+
+<br>
+
+![](images/tmfram.png){fig-align="center"}
+
+
+## Supplemental Materials
+### Network Structure 
+
+
+![](images/res/network.png){fig-align="center"}
 
 ## Supplemental Materials
 ### Neural Networks 
@@ -493,7 +486,7 @@ I'll add a QR code here that will allow the audience to scan while I answer ques
 :::
 
 ## Supplemental Materials
-### Confusion Matrix (All Domains)
+### Confusion Matrix (Biopsychosocial)
 
 
 ![](images/res/confus.png){fig-align="center"}
