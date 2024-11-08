@@ -113,7 +113,7 @@ Their findings revealed that a model incorporating [social]{.purple}, [psycholog
 ::: {.column width="50%"}
 
 
-![](images/chan.png)
+![](images/chan.png){.absolute width="56%"}
 
 
 :::
@@ -144,7 +144,47 @@ Using [[Future of Families and Child Wellbeing Study (FFCWS)]{.libre .ffcws}](ht
 
 ![](images/ffcws.png){fig-align="center"}
 
-## [Biopsychosocial Risk]{.pop style="text-align: center; font-size: 1.5em; font-weight: bold"}
+
+## Machine Learning Model Development
+
+
+<br>
+
+:::: {.columns}
+::: {.column width="40%"}
+
+![](images/tidymodels.png){.absolute top=200 right=690 width="50%"}
+:::
+
+::: {.column width="60%"}
+::: {.nonincremental}
+::: {.smaller-text}
+
+**Framework:**
+
+Feed-Forward Neural Network using the [[{tidymodels}]{.tidymodel}](https://www.tidymodels.org/) framework in [R]{.R}
+
+**Data Spending:**
+
+[**2128**]{.blue3} observations
+
+[**60/20/20**]{.blue3} (1276/426/426) split for training, validation, and testing  
+
+**Feature Engineering Steps:**
+
+* Dummy coded (one-hot encoding) categorical predictors  
+* Normalization of numeric predictors  
+* Dimensionality reduction via unsupervised PCA
+
+:::
+
+:::
+
+:::
+
+::::
+
+## [Biopsychosocial Risk Factors]{.pop style="text-align: center; font-size: 1.5em; font-weight: bold"}
 
 <br>
 
@@ -210,33 +250,6 @@ Using [[Future of Families and Child Wellbeing Study (FFCWS)]{.libre .ffcws}](ht
 :::
 
 
-## Machine Learning Workflow
-### Data Spending
-
-<br>
-
-:::: {.columns}
-::: {.column width="50%"}
-![](images/tidymodels.png){width="90%"}
-:::
-
-::: {.column width="50%"}
-::: {.nonincremental}
-[**60/20/20**]{.blue3} split for training, validation, and testing.   
-
-[**2128**]{.blue3} observations after merging data
-
-* 1276 for training   
-* 426  for validation   
-* 426  for testing   
-
-:::
-
-:::
-
-::::
-
-
 
 ## Sample Descriptive Statistics
 
@@ -280,45 +293,45 @@ Using [[Future of Families and Child Wellbeing Study (FFCWS)]{.libre .ffcws}](ht
 
 ## Preliminary Results (Socio-Environmental)
 
-![](images/res/socroc.png){.absolute top=140 right=600 height="55%"}
-![](images/res/vipsocial.png){.absolute top=200 right=0 height="40%"}
+![](images/res/socroc.png){.absolute top=110 right=600 height="70%"}
+![](images/res/vipsocial.png){.absolute top=200 right=-60 height="50%"}
 
 
 
 ## Preliminary Results (Psychological)
 
-![](images/res/psychroc.png){.absolute top=140 right=600 height="55%"}
+![](images/res/psychroc.png){.absolute top=110 right=600 height="70%"}
 
 
-![](images/res/vippsych.png){.absolute top=200 right=0 height="40%"}
+![](images/res/vippsych.png){.absolute top=200 right=-60 height="50%"}
 
 
 ## Preliminary Results (Genetic)
 
-![](images/res/generoc.png){.absolute top=140 right=600 height="55%"}
+![](images/res/generoc.png){.absolute top=110 right=600 height="70%"}
 
 
-![](images/res/genevip.png){.absolute top=200 right=0 height="40%"}
+![](images/res/genevip.png){.absolute top=200 right=-70 height="50%"}
 
 ## Preliminary Results (Biopsychosocial)
 
 
 
-![](images/res/allrocplot.png){.absolute top=140 right=600 height="55%"}
+![](images/res/allrocplot.png){.absolute top=110 right=600 height="70%"}
 
-![](images/res/allvip.png){.absolute top=190 right=50 height="45%"}
+![](images/res/allvip.png){.absolute top=155 right=-60 height="60%"}
 
 
 
 ## Preliminary Results 
 
 
-![](images/res/allroc.png){.absolute top=200 right=750 height="38%"}
+![](images/res/allroc.png){.absolute top=140 right=550 height="55%"}
 
-![](images/res/Acc.png){.absolute top=200 right=300 height="38%"}
+![](images/res/Acc.png){.absolute top=140 right=-170 height="55%"}
 
 
-![](images/res/bre.png){.absolute top=200 right=-140 height="38%"}
+
 
 
 
@@ -352,9 +365,7 @@ Using [[Future of Families and Child Wellbeing Study (FFCWS)]{.libre .ffcws}](ht
 
 * [**Test model on Year 22 data:**]{.fragment .rgb} Validate the model's performance on the Year 22 data to assess its generalizability and predictive power.
 
-* [**Treat delinquency as a continuous outcome**]{.fragment .rgb} rather than a classification model.
-
-* [**Manually fix the GxE interactions**]{.fragment .rgb} using domain knowledge rather than allowing model to determine the interaction.
+* [**Treat delinquency as continuous**]{.fragment .rgb} rather than a using a categorical classification model.
 
 :::
 :::
@@ -381,10 +392,17 @@ I'll add a QR code here that will allow the audience to scan while I answer ques
 
 :::
 
+## Supplemental Materials
+### Network Structure 
+
+
+![](images/res/network.png){fig-align="center"}
+
 
 ## Supplemental Materials
 ### Tests for Overfitting 
 
+<br>
 
 ![](images/res/aucover.png){.absolute top=200 right=750 height="37%"}
 
@@ -393,6 +411,20 @@ I'll add a QR code here that will allow the audience to scan while I answer ques
 ![](images/res/Overbr.png){.absolute top=200 right=-140 height="37%"}
 
 
+
+## Supplemental Materials
+### Confusion Matrix (Biopsychosocial)
+
+
+![](images/res/confus.png){fig-align="center"}
+
+
+
+## Supplemental Materials
+### Model Calibration
+
+
+![](images/res/bre.png){fig-align="center"}
 
 
 ## Supplemental Materials
@@ -461,14 +493,11 @@ I'll add a QR code here that will allow the audience to scan while I answer ques
 ![](images/tmfram.png){fig-align="center"}
 
 
-## Supplemental Materials
-### Network Structure 
-
-
-![](images/res/network.png){fig-align="center"}
 
 ## Supplemental Materials
 ### Neural Networks 
+
+<br>
 
 ![](images/nn.png){fig-align="center"}
 
@@ -485,16 +514,7 @@ I'll add a QR code here that will allow the audience to scan while I answer ques
 
 :::
 
-## Supplemental Materials
-### Confusion Matrix (Biopsychosocial)
-
-
-![](images/res/confus.png){fig-align="center"}
 
 
 
-## Supplemental Materials
-### Activation Functions 
 
-
-![](images/act.png){.absolute right=250 height="75%"}
