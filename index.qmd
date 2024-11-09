@@ -153,7 +153,7 @@ Using [[Future of Families and Child Wellbeing Study (FFCWS)]{.libre .ffcws}](ht
 :::: {.columns}
 ::: {.column width="40%"}
 
-![](images/tidymodels.png){.absolute top=200 right=690 width="50%"}
+![](images/tidymodels.png){.absolute top=200 right=670 width="50%"}
 :::
 
 ::: {.column width="60%"}
