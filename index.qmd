@@ -153,7 +153,7 @@ Using [[Future of Families and Child Wellbeing Study (FFCWS)]{.libre .ffcws}](ht
 :::: {.columns}
 ::: {.column width="40%"}
 
-![](images/tidymodels.png){.absolute top=200 right=650 width="50%"}
+![](images/tidymodels.png){.absolute top=200 right=630 width="50%"}
 :::
 
 ::: {.column width="60%"}
@@ -173,7 +173,7 @@ Feed-Forward Neural Network using the [[{tidymodels}]{.tidymodel}](https://www.t
 **Feature Engineering Steps:**
 
 * Dummy coded (one-hot encoding) categorical predictors  
-* Normalization of numeric predictors  
+* Normalization of predictors 
 * Dimensionality reduction via unsupervised PCA
 
 :::
@@ -293,14 +293,14 @@ Feed-Forward Neural Network using the [[{tidymodels}]{.tidymodel}](https://www.t
 
 ## Preliminary Results (Socio-Environmental)
 
-![](images/res/socroc.png){.absolute top=110 right=600 height="70%"}
+![](images/res/socroc.png){.absolute top=110 right=570 height="70%"}
 ![](images/res/vipsocial.png){.absolute top=200 right=-60 height="50%"}
 
 
 
 ## Preliminary Results (Psychological)
 
-![](images/res/psychroc.png){.absolute top=110 right=600 height="70%"}
+![](images/res/psychroc.png){.absolute top=110 right=570 height="70%"}
 
 
 ![](images/res/vippsych.png){.absolute top=200 right=-60 height="50%"}
@@ -308,7 +308,7 @@ Feed-Forward Neural Network using the [[{tidymodels}]{.tidymodel}](https://www.t
 
 ## Preliminary Results (Genetic)
 
-![](images/res/generoc.png){.absolute top=110 right=600 height="70%"}
+![](images/res/generoc.png){.absolute top=110 right=570 height="70%"}
 
 
 ![](images/res/genevip.png){.absolute top=200 right=-70 height="50%"}
@@ -317,7 +317,7 @@ Feed-Forward Neural Network using the [[{tidymodels}]{.tidymodel}](https://www.t
 
 
 
-![](images/res/allrocplot.png){.absolute top=110 right=600 height="70%"}
+![](images/res/allrocplot.png){.absolute top=110 right=570 height="70%"}
 
 ![](images/res/allvip.png){.absolute top=155 right=-60 height="60%"}
 
@@ -326,9 +326,9 @@ Feed-Forward Neural Network using the [[{tidymodels}]{.tidymodel}](https://www.t
 ## Preliminary Results 
 
 
-![](images/res/allroc.png){.absolute top=140 right=520 height="55%"}
+![](images/res/allroc.png){.absolute top=140 right=510 height="55%"}
 
-![](images/res/Acc.png){.absolute top=140 right=-160 height="55%"}
+![](images/res/Acc.png){.absolute top=140 right=-110 height="55%"}
 
 
 
@@ -395,22 +395,12 @@ I'll add a QR code here that will allow the audience to scan while I answer ques
 :::
 
 ## Supplemental Materials
-### Network Structure 
+### Network Structure (**12-4-1, 57 weights**)
 
 
 ![](images/res/network.png){fig-align="center"}
 
 
-## Supplemental Materials
-### Tests for Overfitting 
-
-<br>
-
-![](images/res/aucover.png){.absolute top=200 right=750 height="37%"}
-
-![](images/res/accover.png){.absolute top=200 right=300 height="37%"}
-
-![](images/res/Overbr.png){.absolute top=200 right=-140 height="37%"}
 
 
 
