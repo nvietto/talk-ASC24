@@ -506,7 +506,12 @@ I'll add a QR code here that will allow the audience to scan while I answer ques
 
 :::
 
+## Supplemental Materials
+### UNO CrimRxiv Link 
 
+<br>
 
+<br>
 
+![](images/QR.jpg){.absolute top=160 right=350 height="55%"}
 
