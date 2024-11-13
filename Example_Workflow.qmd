@@ -165,13 +165,13 @@ mlp_param |>
 
 mlp_param <- mlp_param |> 
   update(
-    hidden_units = hidden_units(range = c(1, 10)),
-    epochs = epochs(range = c(10, 1000)),
-    penalty = penalty(range = c(-10, 0), 
+    hidden_units = hidden_units(range = c(1, 10)), # number of hidden nodes
+    epochs = epochs(range = c(10, 1000)), # number of times it will pass through training data
+    penalty = penalty(range = c(-10, 0),  # regularization 
                       trans = scales::log10_trans())
   )
 
-
+# if you're dealing with over-fitting issues, you can reduce the number of hidden nodes 
 
 nn_grid <- grid_regular(mlp_param,
                         levels = 5)
