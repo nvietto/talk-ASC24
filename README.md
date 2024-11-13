@@ -27,5 +27,5 @@ Click the green "Code" button and select "Download ZIP" to download all files.
 - **[Mapping of machine learning approaches for description, prediction, and causal inference in the social and health sciences](https://www.science.org/doi/10.1126/sciadv.abk1942)**    
 - **[Classifying Conduct Disorder using a biopsychosocial model and machine learning method](https://pmc.ncbi.nlm.nih.gov/articles/PMC9393206/)**  
 - **[Statistical Modeling: The Two Cultures](https://www2.math.uu.se/~thulin/mm/breiman.pdf)**
-
+- **[Machine Learning Approaches for Clinical Psychology and Psychiatry](https://www.annualreviews.org/content/journals/10.1146/annurev-clinpsy-032816-045037)**
 --- 

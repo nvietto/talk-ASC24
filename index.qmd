@@ -172,9 +172,9 @@ Feed-Forward Neural Network using the [[{tidymodels}]{.tidymodel}](https://www.t
 
 **Feature Engineering Steps:**
 
-* Dummy coded (one-hot encoding) categorical predictors  
+* Dummy coded categorical predictors  
 * Normalization of predictors 
-* Dimensionality reduction via unsupervised PCA
+* Dimensionality reduction via Unsupervised PCA
 
 :::
 
