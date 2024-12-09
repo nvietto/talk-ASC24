@@ -1,6 +1,6 @@
 # ASC 2024 Meeting in San Francisco  
 
-## A Combined Theory and Data-Driven Approach to Classifying Delinquency Risk in the Future of Families and Child Well-Being Study  
+## A Combined Theory Data-Driven Approach to Classifying Delinquency Risk in the Future of Families and Child Well-Being Study  
 
 ### Session: Advancing Methodological Approaches to Biopsychosocial Research  
 
